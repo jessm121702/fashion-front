@@ -11,60 +11,91 @@ const FAQPage = () => {
 
   const faqs = [
     {
-      question: "What is this platform, and how does it help fashion stylists?",
+      question: "What is Styloire?",
       answer:
-        "It simplifies emailing fashion brands by allowing stylists to send personalized email blasts with brand-specific subject lines using imported Excel/CSV data.",
+        "STYLOIRE is an email automation platform designed specifically for fashion stylists. It simplifies the process of reaching out to brands for clothing loans by allowing stylists to send personalized email blasts with ease.",
     },
     {
-      question: "Do I need to manually enter brand information for each email?",
+      question: "How does STYLOIRE work?",
       answer:
-        "No, the platform automates this process by pulling data from the imported Excel/CSV files, saving you time and effort.",
+        "STYLOIRE enables you to upload a market list (in Excel or CSV format), create email templates, and send customized email blasts to brands. The platform automatically personalizes emails by filling in brand-specific details like names and subject lines, while keeping the core message consistent.",
     },
     {
-      question: "How does the personalized email system work?",
+      question: "Can I send emails to multiple brands at once?",
       answer:
-        "It simplifies emailing fashion brands by allowing stylists to send personalized email blasts with brand-specific subject lines using imported Excel/CSV data.",
-    },
-    {
-      question: "Can I track the success of my email campaigns?",
-      answer:
-        "It simplifies emailing fashion brands by allowing stylists to send personalized email blasts with brand-specific subject lines using imported Excel/CSV data.",
+        "Yes! STYLORE is designed for bulk email sending while keeping each message personalized. This saves time and ensures a professional touch.",
     },
     {
       question:
-        "Is this platform suitable for both small and large-scale fashion stylists?",
+        "What file formats does STYLOIRE support for uploading market lists?",
       answer:
-        "It simplifies emailing fashion brands by allowing stylists to send personalized email blasts with brand-specific subject lines using imported Excel/CSV data.",
+        "STYLOIRE supports Excel (.xlsx) and CSV files, making it easy to import your contact lists.",
+    },
+    {
+      question: "Is STYLOIRE user-friendly for non-technical users?",
+      answer:
+        "Yes, STYLOIRE is designed with a clean and intuitive interface, ensuring that stylists of all technical skill levels can easily navigate the platform.",
+    },
+    {
+      question: "How does STYLOIRE ensure emails don’t end up in spam folders?",
+      answer:
+        "STYLOIRE integrates with trusted email service providers l to ensure high deliverability. Each email is sent individually, avoiding spam filters and maintaining a professional appearance.",
+    },
+    {
+      question: "Is my data secure with STYLOIRE?",
+      answer:
+        "STYLOIRE prioritizes your privacy and security. All data is encrypted and handled according to industry best practices, ensuring your information is safe.",
+    },
+    {
+      question: "Does STYLOIRE offer support if I encounter issues?",
+      answer:
+        "Of course! Our support team is here to help. You can reach out to us via email contact@styloire.com for assistance.",
+    },
+    {
+      question: "Are there limits to how many emails I can send?",
+      answer:
+        "Your email-sending limits depend on your chosen subscription plan. Higher-tier plans allow for larger campaigns and additional features.",
+    },
+    {
+      question: "What email providers does styloire integrate with?",
+      answer:
+        "STYLOIRE integrates seamlessly with leading email platforms like Gmail, Outlook, and custom domains, ensuring flexibility for all users.",
     },
   ];
 
   return (
-    <div className="max-w-4xl mx-auto p-6 mt-12 mb-6 ">
-      <h2 className="text-2xl font-bold text-center mb-6">
-        Frequently Asked Questions
-      </h2>
-      <div className="space-y-4">
-        {faqs.map((faq, index) => (
-          <div
-            key={index}
-            className="border border-gray-200 rounded-lg overflow-hidden shadow-sm "
-          >
-            <button
-              onClick={() => toggleFAQ(index)}
-              className="flex justify-between items-center w-full p-4 text-left bg-beige  focus:outline-none"
+    <div className="bg-[#dcd8d4]">
+      <div className="max-w-4xl mx-auto p-6   ">
+        <h2 className="text-2xl font-bold text-center mb-6">
+          Frequently Asked Questions
+        </h2>
+        <div className="space-y-4">
+          {faqs.map((faq, index) => (
+            <div
+              key={index}
+              className="border border-[#000000] rounded-lg overflow-hidden shadow-sm "
             >
-              <span className="font-medium text-gray-800">{faq.question}</span>
-              {activeIndex === index ? (
-                <FaMinus className="text-gray-500" />
-              ) : (
-                <FaPlus className="text-gray-500" />
+              <button
+                onClick={() => toggleFAQ(index)}
+                className="flex justify-between items-center w-full p-4 text-left bg-[#dcd8d4]  focus:outline-none"
+              >
+                <span className="font-medium text-gray-800">
+                  {faq.question}
+                </span>
+                {activeIndex === index ? (
+                  <FaMinus className="text-gray-500" />
+                ) : (
+                  <FaPlus className="text-gray-500" />
+                )}
+              </button>
+              {activeIndex === index && (
+                <div className="p-4 bg-[#dcd8d4] text-gray-700">
+                  {faq.answer}
+                </div>
               )}
-            </button>
-            {activeIndex === index && (
-              <div className="p-4 bg-beige text-gray-700">{faq.answer}</div>
-            )}
-          </div>
-        ))}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

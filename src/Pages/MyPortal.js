@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../component/Navbar";
 import Footer from "../component/Footer";
-import OurPortal from "../component/OurPortal";
 import SheetUploadForm from "../component/SheetUploadForm";
 import axios from "axios";
 
@@ -16,9 +15,7 @@ const MyPortal = () => {
     const queryParams = new URLSearchParams(location.search);
     const email = queryParams.get("email");
     const subId = queryParams.get("sub_id");
-
     console.log("🦀 Query Parameters:", { email, subId });
-
     const checkSubscription = async () => {
       try {
         setIsLoading(true);
@@ -52,7 +49,6 @@ const MyPortal = () => {
         </div>
       )}
       <Navbar />
-      <OurPortal />
       {userData.email && userData.subId ? (
         <SheetUploadForm email={userData.email} />
       ) : (

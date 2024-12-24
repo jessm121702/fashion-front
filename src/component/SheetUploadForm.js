@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
-import Papa from "papaparse"; // CSV parsing library
+import Papa from "papaparse"; 
 import axios from "axios";
-
 function UploadForm(email) {
   const [fileName, setFileName] = useState("");
   const [emails, setEmails] = useState([]);
@@ -81,105 +80,115 @@ function UploadForm(email) {
   };
 
   return (
-    <>
-      {isLoading && (
+    <div className="flex  flex-col justify-center items-center min-h-screen  pb-12 bg-[#dcd8d4]">
+       {isLoading && (
         <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
-          <div className="w-12 h-12 border-4 border-t-4 border-pink-500 rounded-full animate-spin"></div>
+          <div className="w-12 h-12 border-4 border-t-4 text-gray-600 rounded-full animate-spin"></div>
         </div>
       )}
-      <div className="flex justify-center items-center min-h-screen -mt-16 pb-12">
-        <div className="bg-white shadow-lg rounded-lg w-full max-w-md p-6">
-          <h2 className="text-2xl font-semibold text-center mb-6">Upload Your Sheets Here</h2>
-          <div className="mb-4 text-center">
+      <h2 className=" text-4xl sm:text-2xl lg:text-5xl text-center font-bold mb-6 text-[#1D2026">
+        My Portal
+      </h2>
+      <div className="bg-[#D9D9D9] shadow-lg rounded-lg w-full max-w-md p-6">
+        <h2 className="text-2xl font-semibold text-center mb-6">
+          Upload Your Sheets Here
+        </h2>
+        <div className="mb-4 text-center">
+          <label
+            htmlFor="file-upload"
+            className="bg-[#232021] text-white font-semibold hover:bg-pink-600   py-2 px-4 rounded cursor-pointer focus:outline-none focus:ring-2 focus:ring-pink-300 flex items-center justify-center"
+          >
+            <FaCloudUploadAlt className="mr-2" />
+            Choose File
+          </label>
+          <input
+            type="file"
+            id="file-upload"
+            className="hidden"
+            onChange={handleFileChange}
+          />
+          {fileName && <p className="mt-2 text-gray-600 text-sm"> 📄 {fileName}</p>}
+        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
             <label
-              htmlFor="file-upload"
-              className="flex items-center justify-center bg-gradient-to-r from-pink-500 to-red-500 text-white font-semibold hover:from-pink-600 hover:to-red-600 py-3 px-6 rounded-lg shadow-lg cursor-pointer transition-all duration-300 transform hover:scale-105"
+              htmlFor="client"
+              className="block text-gray-700 font-medium mb-1"
             >
-              <FaCloudUploadAlt className="mr-2 text-2xl" />
-              Choose File
+              Client
             </label>
             <input
-              type="file"
-              id="file-upload"
-              accept=".csv"
-              className="hidden"
-              onChange={handleFileChange}
+              type="text"
+              id="client"
+              name="client"
+              placeholder="Jessica"
+              className="w-full border border-[#232021] rounded-lg px-3 py-2 focus:outline-none "
+              value={formData.client}
+              onChange={handleInputChange}
             />
-            {fileName && (
-              <p className="mt-2 text-gray-600 text-sm font-medium italic">📄 {fileName}</p>
-            )}
           </div>
-
-          <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-              <label htmlFor="client" className="block text-gray-700 font-medium mb-1">
-                Client
-              </label>
-              <input
-                type="text"
-                id="client"
-                name="client"
-                placeholder="Client Name"
-                className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                value={formData.client}
+          <div className="mb-4">
+            <label
+              htmlFor="event"
+              className="block text-gray-700 font-medium mb-1"
+            >
+              Event
+            </label>
+            <input
+              type="text"
+              id="event"
+              name="event"
+              placeholder="MET"
+              className="w-full border border-[#232021] rounded-lg px-3 py-2 focus:outline-none "
+              value={formData.event}
                 onChange={handleInputChange}
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="event" className="block text-gray-700 font-medium mb-1">
-                Event
-              </label>
-              <input
-                type="text"
-                id="event"
-                name="event"
-                placeholder="Event Name"
-                className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                value={formData.event}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="subject" className="block text-gray-700 font-medium mb-1">
-                Subject
-              </label>
-              <input
-                type="text"
-                id="subject"
-                name="subject"
-                placeholder="Subject Line"
-                className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                value={formData.subject}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="body" className="block text-gray-700 font-medium mb-1">
-                Body
-              </label>
-              <textarea
-                id="body"
-                name="body"
-                placeholder="Email Body"
-                className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                style={{ height: "150px", resize: "none" }}
-                value={formData.body}
-                onChange={handleInputChange}
-              ></textarea>
-            </div>
-            <div className="text-center">
-              <button
-                type="submit"
-                className="bg-[#E91E63] text-white font-semibold hover:bg-pink-600 py-2 px-6 rounded-lg"
-              >
-                Submit
-              </button>
-            </div>
-          </form>
-        </div>
+            />
+          </div>
+          <div className="mb-4">
+            <label
+              htmlFor="subject"
+              className="block text-gray-700 font-medium mb-1"
+            >
+              Your subject line looks like this
+            </label>
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              placeholder="Jessica / Met/ Brand"
+              className="w-full border border-[#232021] rounded-lg px-3 py-2 focus:outline-none "
+              value={formData.subject}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="mb-4">
+            <label
+              htmlFor="body"
+              className="block text-gray-700 font-medium mb-1"
+            >
+              Body
+            </label>
+            <textarea
+              id="body"
+              name="body"
+              placeholder="Email"
+              className="w-full border border-[#232021] rounded-lg px-3 py-2 focus:outline-none "
+              style={{ height: "150px", resize: "none" }}
+              value={formData.body}
+              onChange={handleInputChange}
+            ></textarea>
+          </div>
+          <div className="text-center">
+            <button
+              type="submit"
+              className="bg-[#232021] text-white font-semibold hover:bg-pink-600  py-2 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
       </div>
-    </>
-
+    </div>
   );
 }
 
