@@ -16,7 +16,7 @@ const SubscriptionForm = () => {
     }
     setIsLoading(true);
     try {
-      const response = await axios.post("http://localhost:3001/user/Subscription", {
+      const response = await axios.post("https://fashion-back-ytsh.onrender.com/user/Subscription", {
         email,
         subscriptionType,
       });

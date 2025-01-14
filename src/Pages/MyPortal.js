@@ -19,7 +19,7 @@ const MyPortal = () => {
     const checkSubscription = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.post("http://localhost:3001/user/checkSubscription", { email, sub_id: subId });
+        const response = await axios.post("https://fashion-back-ytsh.onrender.com/user/checkSubscription", { email, sub_id: subId });
         if (response.status === 200) {
           console.log("✅ Subscription is valid:", response.data);
           setUserData({ email, subId });
