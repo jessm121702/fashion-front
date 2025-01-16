@@ -21,12 +21,14 @@ const SubscriptionForm = () => {
         subscriptionType,
       });
 
-      const { url } = response.data;
+      const { url, message } = response.data;
 
       if (url) {
         window.location.href = url;
+      } else if (subscriptionType === "Basic" && message) {
+        alert(message);
       } else {
-        alert("Failed to retrieve the Stripe session URL.");
+        alert("Failed to process the subscription.");
       }
     } catch (error) {
       console.error("Error submitting subscription:", error);
@@ -35,6 +37,7 @@ const SubscriptionForm = () => {
       setIsLoading(false);
     }
   };
+
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-[#dcd8d4] pb-12 ">
