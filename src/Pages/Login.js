@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState  , useContext} from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
+    const { setIsAuthenticated, setUserData } = useContext(AuthContext);
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -28,10 +30,15 @@ const Login = () => {
             localStorage.setItem("authToken", response.data.token);
             navigate("/myportal");
             console.log("Login Successful:", response.data);
+            setUserData({
+                user: response.data.user,
+            });
+            setIsAuthenticated(true);
             alert("Login Successful!");
         } catch (error) {
             console.error("Error during login:", error);
             alert("Login failed. Please check your credentials and try again.");
+            setIsAuthenticated(false);
         } finally {
             setLoading(false);
         }

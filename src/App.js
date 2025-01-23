@@ -8,22 +8,25 @@ import Subscription from "./Pages/Subscription";
 import SignUp from "./Pages/SignUp";
 import Login from "./Pages/Login";
 import ProtectedRoute from "./ProtectedRoute";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/myportal" element={<ProtectedRoute><MyPortal /></ProtectedRoute>} />
-          <Route path="/faq" element={<FAQ />} />
-          <Route path="/subscription" element={<Subscription />} />
-          <Route path="/Login" element={<Login />} />
-          <Route path="/SignUp" element={<SignUp />} />
-        </Routes>
-      </div>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/myportal" element={<ProtectedRoute><MyPortal /></ProtectedRoute>} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/subscription" element={<Subscription />} />
+            <Route path="/Login" element={<Login />} />
+            <Route path="/SignUp" element={<SignUp />} />
+          </Routes>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 
