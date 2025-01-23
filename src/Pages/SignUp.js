@@ -1,6 +1,7 @@
-// SignUpPage.js
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { AuthContext } from "../context/AuthContext";
 
 const SignUp = () => {
     const [formData, setFormData] = useState({
@@ -10,6 +11,15 @@ const SignUp = () => {
         password: "",
         confirmPassword: "",
     });
+
+    const navigate = useNavigate();
+    const { isAuthenticated } = useContext(AuthContext);
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate("/landing");
+        }
+    }, [isAuthenticated, navigate]);
 
     const handleChange = (e) => {
         const { id, value } = e.target;
@@ -42,7 +52,7 @@ const SignUp = () => {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-[#292828]">
+        <div className="py-6 flex justify-center items-center min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
             <div className="bg-[#1D2026] p-8 rounded-lg shadow-lg w-full max-w-md animate-fadeIn">
                 <h1 className="text-3xl font-bold text-center text-white mb-6">Sign Up</h1>
                 <form onSubmit={handleSubmit}>
@@ -55,7 +65,7 @@ const SignUp = () => {
                             id="firstName"
                             value={formData.firstName}
                             onChange={handleChange}
-                            className="w-full p-3 rounded-lg bg-[#525252] text-white focus:outline-none focus:ring-2 focus:ring-[#4cded4]"
+                            className="w-full p-3 rounded-lg bg-[#525252] text-white focus:outline-none focus:ring-2 focus:ring-pink-500"
                             placeholder="Enter your first name"
                         />
                     </div>
@@ -68,7 +78,7 @@ const SignUp = () => {
                             id="lastName"
                             value={formData.lastName}
                             onChange={handleChange}
-                            className="w-full p-3 rounded-lg bg-[#525252] text-white focus:outline-none focus:ring-2 focus:ring-[#4cded4]"
+                            className="w-full p-3 rounded-lg bg-[#525252] text-white focus:outline-none focus:ring-2 focus:ring-pink-500"
                             placeholder="Enter your last name"
                         />
                     </div>
@@ -81,7 +91,7 @@ const SignUp = () => {
                             id="email"
                             value={formData.email}
                             onChange={handleChange}
-                            className="w-full p-3 rounded-lg bg-[#525252] text-white focus:outline-none focus:ring-2 focus:ring-[#4cded4]"
+                            className="w-full p-3 rounded-lg bg-[#525252] text-white focus:outline-none focus:ring-2 focus:ring-pink-500"
                             placeholder="Enter your email"
                         />
                     </div>
@@ -94,7 +104,7 @@ const SignUp = () => {
                             id="password"
                             value={formData.password}
                             onChange={handleChange}
-                            className="w-full p-3 rounded-lg bg-[#525252] text-white focus:outline-none focus:ring-2 focus:ring-[#4cded4]"
+                            className="w-full p-3 rounded-lg bg-[#525252] text-white focus:outline-none focus:ring-2 focus:ring-pink-500"
                             placeholder="Create a password"
                         />
                     </div>
@@ -107,19 +117,19 @@ const SignUp = () => {
                             id="confirmPassword"
                             value={formData.confirmPassword}
                             onChange={handleChange}
-                            className="w-full p-3 rounded-lg bg-[#525252] text-white focus:outline-none focus:ring-2 focus:ring-[#4cded4]"
+                            className="w-full p-3 rounded-lg bg-[#525252] text-white focus:outline-none focus:ring-2 focus:ring-pink-500"
                             placeholder="Confirm your password"
                         />
                     </div>
                     <button
                         type="submit"
-                        className="w-full bg-[#4cded4] text-[#292828] font-semibold p-3 rounded-lg hover:bg-[#3bcec4] transition duration-300"
+                        className="w-full bg-[#151414] text-white font-semibold p-3 rounded-lg hover:bg-pink-600 transition duration-300"
                     >
                         Sign Up
                     </button>
                 </form>
                 <p className="text-white text-center mt-4">
-                    Already have an account? <a href="/login" className="text-[#4cded4] hover:underline">Login</a>
+                    Already have an account? <a href="/login" className="text-pink-500 hover:underline">Login</a>
                 </p>
             </div>
         </div>

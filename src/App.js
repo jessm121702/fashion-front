@@ -7,6 +7,7 @@ import FAQ from "./Pages/FAQ";
 import Subscription from "./Pages/Subscription";
 import SignUp from "./Pages/SignUp";
 import Login from "./Pages/Login";
+import Landing from "./Pages/Landing";
 import ProtectedRoute from "./ProtectedRoute";
 import { AuthProvider } from "./context/AuthContext";
 
@@ -17,6 +18,7 @@ function App() {
         <div className="App">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/landing" element={<Landing />} />
             <Route path="/services" element={<Services />} />
             <Route path="/myportal" element={<ProtectedRoute><MyPortal /></ProtectedRoute>} />
             <Route path="/faq" element={<FAQ />} />
