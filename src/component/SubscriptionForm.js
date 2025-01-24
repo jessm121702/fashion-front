@@ -75,6 +75,12 @@ const SubscriptionForm = () => {
                 This is the email that we will verify.
               </span>
             </p>
+            {/* Additional Text Field */}
+            <textarea
+              placeholder="Tell us more about yourself"
+              className="w-full border border-[#000000] rounded-md p-2 focus:outline-none"
+              rows="4"
+            ></textarea>
           </div>
 
           {/* Subscription Selection */}
@@ -97,65 +103,6 @@ const SubscriptionForm = () => {
                 onChange={(e) => setSubscriptionType(e.target.value)} />
               <span className="text-gray-600">Pro</span>
             </label>
-          </div>
-
-          {/* Card Information */}
-          <div className="space-y-4 mb-6">
-            <input
-              type="text"
-              placeholder="Card Number"
-              className="w-full border border-[#000000] rounded-md p-2 focus:outline-none "
-            />
-            <div className="grid grid-cols-2 gap-4">
-              <input
-                type="text"
-                placeholder="Exp date"
-                className="w-full border border-[#000000] rounded-md p-2 focus:outline-none "
-              />
-              <input
-                type="text"
-                placeholder="Security code"
-                className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-pink-400"
-              />
-            </div>
-          </div>
-
-          {/* Address */}
-          <div className="space-y-4 mb-6">
-            <input
-              type="text"
-              placeholder="Full Name"
-              className="w-full border border-[#000000] rounded-md p-2 focus:outline-none"
-            />
-            <input
-              type="text"
-              placeholder="Street Address"
-              className="w-full border border-[#000000] rounded-md p-2 focus:outline-none "
-            />
-            <div className="grid grid-cols-2 gap-4">
-              <input
-                type="text"
-                placeholder="City"
-                className="w-full border border-[#000000] rounded-md p-2 focus:outline-none "
-              />
-              <input
-                type="text"
-                placeholder="State"
-                className="w-full border border-[#000000] rounded-md p-2 focus:outline-none "
-              />
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <input
-                type="text"
-                placeholder="Zip Code"
-                className="w-full border border-[#000000] rounded-md p-2 focus:outline-none "
-              />
-              <input
-                type="text"
-                placeholder="Country"
-                className="w-full border border-[#000000] rounded-md p-2 focus:outline-none "
-              />
-            </div>
           </div>
 
           {/* Submit Button */}
