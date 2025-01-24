@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import bgImg from "../assests/bgimg.jpeg";
 import { AuthContext } from "../context/AuthContext";
 
 const SignUp = () => {
@@ -52,12 +53,19 @@ const SignUp = () => {
     };
 
     return (
-        <div className="py-6 flex justify-center items-center min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
-            <div className="bg-[#1D2026] p-8 rounded-lg shadow-lg w-full max-w-md animate-fadeIn">
-                <h1 className="text-3xl font-bold text-center text-white mb-6">Sign Up</h1>
+        <div
+            className="py-6 flex justify-center items-center min-h-screen"
+            style={{
+                backgroundImage: `url(${bgImg})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+            }}
+        >
+            <div className="bg-[#f9f7f4] p-8 rounded-lg shadow-lg w-full max-w-md animate-fadeIn">
+                <h1 className="text-3xl font-bold text-center text-[#5a4a42] mb-6">Sign Up</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">
-                        <label className="block text-white mb-2" htmlFor="firstName">
+                        <label className="block text-[#5a4a42] mb-2" htmlFor="firstName">
                             First Name
                         </label>
                         <input
@@ -65,12 +73,12 @@ const SignUp = () => {
                             id="firstName"
                             value={formData.firstName}
                             onChange={handleChange}
-                            className="w-full p-3 rounded-lg bg-[#525252] text-white focus:outline-none focus:ring-2 focus:ring-pink-500"
+                            className="w-full p-3 rounded-lg bg-[#ebe6e1] text-[#5a4a42] focus:outline-none focus:ring-2 focus:ring-[#d2c2b0]"
                             placeholder="Enter your first name"
                         />
                     </div>
                     <div className="mb-4">
-                        <label className="block text-white mb-2" htmlFor="lastName">
+                        <label className="block text-[#5a4a42] mb-2" htmlFor="lastName">
                             Last Name
                         </label>
                         <input
@@ -78,12 +86,12 @@ const SignUp = () => {
                             id="lastName"
                             value={formData.lastName}
                             onChange={handleChange}
-                            className="w-full p-3 rounded-lg bg-[#525252] text-white focus:outline-none focus:ring-2 focus:ring-pink-500"
+                            className="w-full p-3 rounded-lg bg-[#ebe6e1] text-[#5a4a42] focus:outline-none focus:ring-2 focus:ring-[#d2c2b0]"
                             placeholder="Enter your last name"
                         />
                     </div>
                     <div className="mb-4">
-                        <label className="block text-white mb-2" htmlFor="email">
+                        <label className="block text-[#5a4a42] mb-2" htmlFor="email">
                             Email Address
                         </label>
                         <input
@@ -91,12 +99,12 @@ const SignUp = () => {
                             id="email"
                             value={formData.email}
                             onChange={handleChange}
-                            className="w-full p-3 rounded-lg bg-[#525252] text-white focus:outline-none focus:ring-2 focus:ring-pink-500"
+                            className="w-full p-3 rounded-lg bg-[#ebe6e1] text-[#5a4a42] focus:outline-none focus:ring-2 focus:ring-[#d2c2b0]"
                             placeholder="Enter your email"
                         />
                     </div>
                     <div className="mb-4">
-                        <label className="block text-white mb-2" htmlFor="password">
+                        <label className="block text-[#5a4a42] mb-2" htmlFor="password">
                             Password
                         </label>
                         <input
@@ -104,12 +112,12 @@ const SignUp = () => {
                             id="password"
                             value={formData.password}
                             onChange={handleChange}
-                            className="w-full p-3 rounded-lg bg-[#525252] text-white focus:outline-none focus:ring-2 focus:ring-pink-500"
+                            className="w-full p-3 rounded-lg bg-[#ebe6e1] text-[#5a4a42] focus:outline-none focus:ring-2 focus:ring-[#d2c2b0]"
                             placeholder="Create a password"
                         />
                     </div>
                     <div className="mb-6">
-                        <label className="block text-white mb-2" htmlFor="confirmPassword">
+                        <label className="block text-[#5a4a42] mb-2" htmlFor="confirmPassword">
                             Confirm Password
                         </label>
                         <input
@@ -117,19 +125,19 @@ const SignUp = () => {
                             id="confirmPassword"
                             value={formData.confirmPassword}
                             onChange={handleChange}
-                            className="w-full p-3 rounded-lg bg-[#525252] text-white focus:outline-none focus:ring-2 focus:ring-pink-500"
+                            className="w-full p-3 rounded-lg bg-[#ebe6e1] text-[#5a4a42] focus:outline-none focus:ring-2 focus:ring-[#d2c2b0]"
                             placeholder="Confirm your password"
                         />
                     </div>
                     <button
                         type="submit"
-                        className="w-full bg-[#151414] text-white font-semibold p-3 rounded-lg hover:bg-pink-600 transition duration-300"
+                        className="w-full bg-[#5a4a42] text-white font-semibold p-3 rounded-lg hover:bg-[#d2c2b0] transition duration-300"
                     >
                         Sign Up
                     </button>
                 </form>
-                <p className="text-white text-center mt-4">
-                    Already have an account? <a href="/login" className="text-pink-500 hover:underline">Login</a>
+                <p className="text-[#5a4a42] text-center mt-4">
+                    Already have an account? <a href="/login" className="text-[#8a7162] hover:underline">Login</a>
                 </p>
             </div>
         </div>

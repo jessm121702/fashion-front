@@ -75,6 +75,12 @@ const SubscriptionForm = () => {
                 This is the email that we will verify.
               </span>
             </p>
+            {/* Additional Text Field */}
+            <textarea
+              placeholder="Tell us more about yourself"
+              className="w-full border border-[#000000] rounded-md p-2 focus:outline-none"
+              rows="4"
+            ></textarea>
           </div>
 
           {/* Subscription Selection */}
