@@ -6,6 +6,8 @@ import { AuthContext } from "../context/AuthContext";
 
 const Services = () => {
   const { userData, isAuthenticated } = useContext(AuthContext);
+console.log("services loaded userData: " , userData);
+// console.log("services loaded userData: " , userData.email);
 
   return (
     <div>
@@ -50,13 +52,12 @@ const Services = () => {
       </div>
 
       {isAuthenticated ? (
-        <PricingPlans email={userData.user.email} />
+        <PricingPlans email={userData.email} />
       ) : (
         <p className="text-center mt-6 text-gray-600">
           Please log in to view pricing plans.
         </p>
       )}
-
       <Footer />
     </div>
   );

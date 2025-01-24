@@ -33,13 +33,10 @@ const Login = () => {
                 email: formData.email,
                 password: formData.password,
             });
-            // Save token to localStorage
             localStorage.setItem("authToken", response.data.token);
             navigate("/landing");
             console.log("Login Successful:", response.data);
-            setUserData({
-                user: response.data.user,
-            });
+            setUserData(response.data.user);
             setIsAuthenticated(true);
             alert("Login Successful!");
         } catch (error) {
