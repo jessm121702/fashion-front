@@ -6,8 +6,6 @@ import { AuthContext } from "../context/AuthContext";
 
 const Services = () => {
   const { userData, isAuthenticated } = useContext(AuthContext);
-console.log("services loaded userData: " , userData);
-// console.log("services loaded userData: " , userData.email);
 
   return (
     <div>

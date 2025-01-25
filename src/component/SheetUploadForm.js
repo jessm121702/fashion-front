@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
-import Papa from "papaparse"; 
+import Papa from "papaparse";
 import axios from "axios";
 function UploadForm(email) {
   const [fileName, setFileName] = useState("");
@@ -81,7 +81,7 @@ function UploadForm(email) {
 
   return (
     <div className="flex  flex-col justify-center items-center min-h-screen  pb-12 bg-[#dcd8d4]">
-       {isLoading && (
+      {isLoading && (
         <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
           <div className="w-12 h-12 border-4 border-t-4 text-gray-600 rounded-full animate-spin"></div>
         </div>
@@ -141,7 +141,7 @@ function UploadForm(email) {
               placeholder="MET"
               className="w-full border border-[#232021] rounded-lg px-3 py-2 focus:outline-none "
               value={formData.event}
-                onChange={handleInputChange}
+              onChange={handleInputChange}
             />
           </div>
           <div className="mb-4">

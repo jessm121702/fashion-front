@@ -19,10 +19,12 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const fetchUserData = async (token) => {
+        console.log("run fetchUserData 🙌🙌 ", token);
+
         const config = {
             method: "get",
             maxBodyLength: Infinity,
-            url: "http://localhost:3001/user/secure-route",
+            url: "https://fashion-back-ytsh.onrender.com/user/secure-route",
             headers: {
                 Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json",
@@ -31,7 +33,7 @@ export const AuthProvider = ({ children }) => {
 
         try {
             const response = await axios.request(config);
-            setUserData(response.data);
+            setUserData(response.data.user);
             setIsAuthenticated(true);
         } catch (error) {
             console.error("Failed to fetch user data:", error);
