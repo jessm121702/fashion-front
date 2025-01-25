@@ -1,16 +1,24 @@
-import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import logo from "../assests/WhatsApp Image 2024-12-21 at 14.52.31.jpeg";
+import { AuthContext } from "../context/AuthContext"; // Adjust the path if needed
 
 const Navbar = () => {
   const location = useLocation();
+  const navigate = useNavigate(); // Hook for navigation
   const [activeLink, setActiveLink] = useState(location.pathname);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { logout, isAuthenticated } = useContext(AuthContext);
 
   const handleLinkClick = (path) => {
     setActiveLink(path);
     setIsMenuOpen(false);
+  };
+
+  const handleLogout = () => {
+    logout(); // Clear authentication state
+    navigate("/login"); // Redirect to the login page
   };
 
   return (
@@ -57,6 +65,18 @@ const Navbar = () => {
               </Link>
             </li>
           ))}
+
+          {/* Logout Button */}
+          {isAuthenticated && (
+            <li className="px-4 md:px-0 text-lg font-bold">
+              <button
+                onClick={handleLogout}
+                className="bg-gradient-to-r from-[#E91E63] to-[#FF6F91] text-white px-6 py-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
+              >
+                Logout
+              </button>
+            </li>
+          )}
         </ul>
       </div>
     </nav>
