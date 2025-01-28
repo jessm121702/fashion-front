@@ -22,10 +22,15 @@ function UploadForm(email) {
       console.log("📝 File name updated: ", file.name);
 
       Papa.parse(file, {
-        header: true,
+        header: false, 
         complete: (results) => {
           console.log("✅ CSV parsing completed. Raw results: ", results);
-          const extractedEmails = results.data.map((row) => row.Email).filter(Boolean);
+
+          const extractedEmails = results.data.flatMap((row) => {
+            const emails = row[1]?.split(',').map((email) => email.trim()).filter(Boolean);
+            return emails || [];
+          });
+
           console.log("📧 Extracted emails: ", extractedEmails);
           setEmails(extractedEmails);
         },
@@ -39,6 +44,7 @@ function UploadForm(email) {
       setEmails([]);
     }
   };
+
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;

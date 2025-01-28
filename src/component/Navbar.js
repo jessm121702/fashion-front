@@ -6,7 +6,7 @@ import { AuthContext } from "../context/AuthContext"; // Adjust the path if need
 
 const Navbar = () => {
   const location = useLocation();
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate();
   const [activeLink, setActiveLink] = useState(location.pathname);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { logout, isAuthenticated } = useContext(AuthContext);
@@ -17,8 +17,8 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    logout(); // Clear authentication state
-    navigate("/login"); // Redirect to the login page
+    logout();
+    navigate("/login");
   };
 
   return (
@@ -41,11 +41,9 @@ const Navbar = () => {
 
         {/* Links */}
         <ul
-          className={`absolute md:static ${
-            isMenuOpen ? "top-[95px] pb-4" : "top-[70px]"
-          } flex flex-col md:flex-row items-center left-0 bg-white md:bg-transparent w-full md:w-auto space-y-4 md:space-y-0 md:space-x-16 text-sm font-medium transform ${
-            isMenuOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
-          } transition-transform duration-300 md:transition-none`}
+          className={`absolute md:static ${isMenuOpen ? "top-[95px] pb-4" : "top-[70px]"
+            } flex flex-col md:flex-row items-center left-0 bg-white md:bg-transparent w-full md:w-auto space-y-4 md:space-y-0 md:space-x-16 text-sm font-medium transform ${isMenuOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+            } transition-transform duration-300 md:transition-none`}
         >
           {[
             { path: "/services", label: "Services" },
@@ -56,9 +54,8 @@ const Navbar = () => {
             <li key={path} className="px-4 md:px-0 text-lg font-bold">
               <Link
                 to={path}
-                className={`${
-                  activeLink === path ? "text-[#E91E63]" : "text-[#000000]"
-                } hover:text-[#E91E63] cursor-pointer`}
+                className={`${activeLink === path ? "text-[#E91E63]" : "text-[#000000]"
+                  } hover:text-[#E91E63] cursor-pointer`}
                 onClick={() => handleLinkClick(path)}
               >
                 {label}
