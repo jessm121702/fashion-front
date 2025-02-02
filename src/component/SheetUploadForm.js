@@ -27,15 +27,14 @@ function UploadForm(email) {
         complete: (results) => {
           console.log("✅ CSV parsing completed. Raw results: ", results);
 
-          const extractedEmails = results.data.flatMap((row) => {
+          const extractedData = results.data.map((row) => {
+            const brand = row[0]?.trim();
             const emails = row[1]?.split(',').map((email) => email.trim()).filter(Boolean);
-            const brand = row[0]?.trim(); // Get brand name from the first column
-            if (brand) setBrandName(brand); // Update the brand name
-            return emails || [];
+            return { brand, emails };
           });
 
-          console.log("📧 Extracted emails: ", extractedEmails);
-          setEmails(extractedEmails);
+          console.log("📧 Extracted data: ", extractedData);
+          setEmails(extractedData);
         },
         error: (error) => {
           console.error("❌ Error parsing CSV: ", error);
@@ -65,32 +64,35 @@ function UploadForm(email) {
       return;
     }
 
-    const subject = `${formData.client} / ${formData.event} / ${brandName}`;
+    // Loop through each brand and emails and send separate API requests
+    for (let i = 0; i < emails.length; i++) {
+      const { brand, emails: emailList } = emails[i];
+      const subject = `${formData.client} / ${formData.event} / ${brand}`;
 
-    console.log("📧 Preparing data to send: ", {
-      email,
-      emails,
-      brandName, // Include the brand name
-      subject,
-      ...formData,
-    });
-
-    try {
-      const response = await axios.post("https://fashion-back-ytsh.onrender.com/user/upload-csv", {
+      console.log("📧 Preparing data to send: ", {
         email,
-        emails,
-        brandName,
+        emailList,
+        brand,
         subject,
         ...formData,
       });
-      console.log("✅ Server response: ", response.data);
-      alert(response.data.message);
-      setIsLoading(false);
-    } catch (error) {
-      console.error("❌ Error submitting form: ", error);
-      setIsLoading(false);
-      alert("Failed to send emails. Check console for details.");
+
+      try {
+        const response = await axios.post("https://fashion-back-ytsh.onrender.com/user/upload-csv", {
+          email,
+          emails: emailList,
+          brand,
+          subject,
+          ...formData,
+        });
+        console.log("✅ Server response: ", response.data);
+        alert(response.data.message);
+      } catch (error) {
+        console.error("❌ Error submitting form: ", error);
+        alert("Failed to send emails. Check console for details.");
+      }
     }
+    setIsLoading(false);
   };
 
   return (
@@ -127,7 +129,7 @@ function UploadForm(email) {
           </div>
           <div className="mb-4">
             <label htmlFor="subject" className="block text-gray-700 font-medium mb-1">Your subject line looks like this</label>
-            <input type="text" id="subject" name="subject" className="w-full border rounded-lg px-3 py-2" value={`${formData.client} / ${formData.event} / ${brandName}`} readOnly />
+            <input type="text" id="subject" name="subject" className="w-full border rounded-lg px-3 py-2" value={`${formData.client} / ${formData.event} / ${emails.length ? emails[0].brand : ''}`} readOnly />
           </div>
           <div className="mb-4">
             <label htmlFor="body" className="block text-gray-700 font-medium mb-1">Body</label>
