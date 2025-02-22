@@ -78,7 +78,7 @@ function UploadForm(email) {
       });
 
       try {
-        const response = await axios.post("https://fashion-back-ytsh.onrender.com/user/upload-csv", {
+        const response = await axios.post("https://fashion-back-production.up.railway.app/user/upload-csv", {
           email,
           emails: emailList,
           brand,

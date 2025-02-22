@@ -29,7 +29,7 @@ const Login = () => {
         setLoading(true);
 
         try {
-            const response = await axios.post("https://fashion-back-ytsh.onrender.com/user/login", {
+            const response = await axios.post("https://fashion-back-production.up.railway.app/user/login", {
                 email: formData.email,
                 password: formData.password,
             });

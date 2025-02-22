@@ -37,7 +37,7 @@ const SignUp = () => {
         }
 
         try {
-            const response = await axios.post("https://fashion-back-ytsh.onrender.com/user/signup", {
+            const response = await axios.post("https://fashion-back-production.up.railway.app/user/signup", {
                 firstName,
                 lastName,
                 email,

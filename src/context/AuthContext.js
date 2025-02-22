@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
         const config = {
             method: "get",
             maxBodyLength: Infinity,
-            url: "https://fashion-back-ytsh.onrender.com/user/secure-route",
+            url: "https://fashion-back-production.up.railway.app/user/secure-route",
             headers: {
                 Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json",

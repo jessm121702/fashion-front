@@ -16,7 +16,7 @@ const PricingPlans = ({ email }) => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post("https://fashion-back-ytsh.onrender.com/user/Subscription", {
+      const response = await axios.post("https://fashion-back-production.up.railway.app/user/Subscription", {
         email,
         subscriptionType: type,
       });
