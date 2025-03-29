@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import Papa from "papaparse";
 import axios from "axios";
-
+import ThankYouModal from "./ThankYouModal";
 function UploadForm(email) {
   const [fileName, setFileName] = useState("");
   const [emails, setEmails] = useState([]);
@@ -77,7 +77,7 @@ function UploadForm(email) {
       });
 
       // Return the promise from axios
-      return axios.post("http://localhost:3001/user/upload-csv", {
+      return axios.post("https://fashion-back-production.up.railway.app/user/upload-csv", {
         email,
         emails: emailList,
         brand,
@@ -103,9 +103,7 @@ function UploadForm(email) {
   return (
     <div className="flex flex-col justify-center items-center min-h-screen pb-12 bg-[#dcd8d4]">
       {isLoading && (
-        <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
-          <div className="w-12 h-12 border-4 border-t-4 text-gray-600 rounded-full animate-spin"></div>
-        </div>
+        <ThankYouModal/>
       )}
       <h2 className="text-4xl sm:text-2xl lg:text-5xl text-center font-bold mb-6 text-[#1D2026]">
         My Portal
