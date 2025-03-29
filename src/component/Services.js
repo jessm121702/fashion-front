@@ -11,13 +11,13 @@ const Services = () => {
     {
       title: "Seamless Contact Management",
       description:
-        "Easily upload your market list as excel or CSV files. Name or organize your data and integrate it into your campaigns with just a few clicks.",
+        "Easily upload your market list as excel or CSV files. Organize your data and integrate it into your campaigns with just a few clicks.",
       img: Verctorimg,
     },
     {
       title: "Streamlined Communication",
       description:
-        "Cut through the noise with a platform built exclusively for the mailing industry. Name ensures maximum professionalism while simplifying every step of your outreach.",
+        "Cut through the noise with a platform built exclusively for the mailing industry. Styloire ensures maximum professionalism while simplifying every step of your outreach.",
       img: Verctorimg,
     },
   ];

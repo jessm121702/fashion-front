@@ -31,7 +31,7 @@ function UploadForm(email) {
             const brand = row[0]?.trim();
             const emails = row[1]?.split(',').map((email) => email.trim()).filter(Boolean);
             return { brand, emails };
-          });
+          }).filter((row) => row.emails && row.emails.length);
 
           console.log("📧 Extracted data: ", extractedData);
           setEmails(extractedData);
@@ -60,13 +60,12 @@ function UploadForm(email) {
 
     if (!emails.length) {
       alert("⚠️ No emails found in the uploaded CSV!");
-      console.warn("⚠️ Submission halted: No emails found.");
+      setIsLoading(false);
       return;
     }
 
-    // Loop through each brand and emails and send separate API requests
-    for (let i = 0; i < emails.length; i++) {
-      const { brand, emails: emailList } = emails[i];
+    // Build an array of promises (one per CSV row)
+    const promises = emails.map(({ brand, emails: emailList }) => {
       const subject = `${formData.client} / ${formData.event} / ${brand}`;
 
       console.log("📧 Preparing data to send: ", {
@@ -77,23 +76,29 @@ function UploadForm(email) {
         ...formData,
       });
 
-      try {
-        const response = await axios.post("https://fashion-back-production.up.railway.app/user/upload-csv", {
-          email,
-          emails: emailList,
-          brand,
-          subject,
-          ...formData,
-        });
-        console.log("✅ Server response: ", response.data);
-        alert(response.data.message);
-      } catch (error) {
-        console.error("❌ Error submitting form: ", error);
-        alert("Failed to send emails. Check console for details.");
-      }
+      // Return the promise from axios
+      return axios.post("http://localhost:3001/user/upload-csv", {
+        email,
+        emails: emailList,
+        brand,
+        subject,
+        ...formData,
+      });
+    });
+
+    // Wait until *all* requests finish
+    try {
+      await Promise.all(promises);
+      console.log("✅ All requests completed successfully!");
+      alert("All emails processed successfully!");
+    } catch (error) {
+      console.error("❌ One or more requests failed: ", error);
+      alert("Failed to send some or all emails. Check console for details.");
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
+
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen pb-12 bg-[#dcd8d4]">
