@@ -29,7 +29,7 @@ const Login = () => {
         setLoading(true);
 
         try {
-            const response = await axios.post("https://fashion-back-production.up.railway.app/user/login", {
+            const response = await axios.post("https://fashion-back-puu8.onrender.com", {
                 email: formData.email,
                 password: formData.password,
             });
